@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IDEATE 2026 · From Blueprint to Build</title>
+<meta name="description" content="IDEATE CDE Innovation Challenge 2026. A 10-week makeathon for all NUS undergraduates. 15 Aug to 21 Oct. $10,000 top prize. From blueprint to build.">
+<meta property="og:title" content="IDEATE 2026 · From Blueprint to Build">
+<meta property="og:description" content="A 10-week makeathon open to all NUS undergraduates. Identify a real-world problem, build a working prototype, pitch it. Top prize $10,000.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --blue:#2130D6;
+  --blue-deep:#1A27AE;
+  --white:#FFFFFF;
+  --yellow:#F5C842;
+  --green:#2BDF70;
+  --red:#E63325;
+  --line:rgba(255,255,255,.32);
+  --line-soft:rgba(255,255,255,.14);
+  --ink-dim:rgba(255,255,255,.72);
+  --mono:'Space Mono',monospace;
+  --disp:'Archivo Black',sans-serif;
+  --body:'Archivo',sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:72px}
+body{background:var(--blue);color:var(--white);font-family:var(--body);font-size:16px;line-height:1.65;overflow-x:hidden;
+  background-image:linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px);
+  background-size:56px 56px}
+::selection{background:var(--yellow);color:var(--blue)}
+a{color:inherit}
+img{max-width:100%;display:block}
+
+/* ---------- utilities ---------- */
+.wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+.mono{font-family:var(--mono)}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.22em;text-transform:uppercase;display:flex;align-items:center;gap:14px;margin-bottom:28px}
+.eyebrow::after{content:"";flex:1;border-top:1px dashed var(--line)}
+.eyebrow .sheetno{border:1px solid var(--line);padding:2px 9px}
+section{padding:96px 0;border-top:1px dashed var(--line-soft);position:relative}
+h2{font-family:var(--disp);font-size:clamp(30px,4.5vw,52px);line-height:1.05;text-transform:uppercase;letter-spacing:.01em;margin-bottom:22px}
+h3{font-family:var(--mono);font-size:15px;letter-spacing:.12em;text-transform:uppercase;margin-bottom:12px}
+.dim{color:var(--ink-dim)}
+.accent-y{color:var(--yellow)}.accent-g{color:var(--green)}.accent-r{color:var(--red)}
+
+/* dimension bracket */
+.dimension{font-family:var(--mono);display:inline-flex;align-items:center;gap:10px;font-size:clamp(13px,1.6vw,15px);letter-spacing:.08em}
+.dimension::before{content:"|\2190";letter-spacing:0}
+.dimension::after{content:"\2192|";letter-spacing:0}
+
+/* reveal on scroll */
+.rv{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s ease}
+.rv.in{opacity:1;transform:none}
+@media (prefers-reduced-motion: reduce){
+  .rv{opacity:1;transform:none;transition:none}
+  html{scroll-behavior:auto}
+}
+
+/* ---------- nav ---------- */
+nav{position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(33,48,214,.9);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.nav-in{max-width:1120px;margin:0 auto;padding:0 24px;height:64px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.logo{font-family:var(--disp);font-size:19px;letter-spacing:.04em;text-decoration:none;white-space:nowrap}
+.logo .l1{color:var(--white)}.logo .l2{color:var(--yellow)}.logo .l3{color:var(--green)}.logo .l4{color:var(--red)}
+.logo .yr{font-family:var(--mono);font-size:12px;vertical-align:super;margin-left:5px;color:var(--ink-dim);font-weight:400}
+.nav-links{display:flex;gap:26px;list-style:none}
+.nav-links a{font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-transform:lowercase;text-decoration:none;color:var(--ink-dim);transition:color .2s}
+.nav-links a:hover,.nav-links a:focus-visible{color:var(--white)}
+.btn{font-family:var(--mono);font-size:13px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;display:inline-block;padding:12px 26px;border:1px solid var(--white);color:var(--white);transition:transform .15s ease,background .2s,color .2s;cursor:pointer;background:none}
+.btn:hover{transform:translate(-2px,-2px);box-shadow:3px 3px 0 var(--line)}
+.btn:active{transform:none;box-shadow:none}
+.btn:focus-visible{outline:2px solid var(--yellow);outline-offset:3px}
+.btn-y{background:var(--yellow);border-color:var(--yellow);color:var(--blue)}
+.btn-y:hover{box-shadow:3px 3px 0 rgba(245,200,66,.4)}
+.btn-sm{padding:8px 18px;font-size:12px}
+.nav-toggle{display:none;background:none;border:1px solid var(--line);color:var(--white);font-family:var(--mono);font-size:12px;padding:8px 12px;cursor:pointer}
+@media (max-width:860px){
+  .nav-links{display:none;position:absolute;top:64px;left:0;right:0;background:var(--blue-deep);flex-direction:column;gap:0;padding:8px 0;border-bottom:1px solid var(--line)}
+  .nav-links.open{display:flex}
+  .nav-links li{border-top:1px solid var(--line-soft)}
+  .nav-links a{display:block;padding:14px 24px}
+  .nav-toggle{display:block}
+  .nav-register{display:none}
+}
+
+/* ---------- hero ---------- */
+header{min-height:100svh;display:flex;flex-direction:column;justify-content:center;position:relative;padding:120px 0 64px;overflow:hidden}
+.grid-bg{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.hero-in{position:relative;text-align:center}
+.kicker{font-family:var(--mono);font-size:clamp(13px,1.8vw,17px);letter-spacing:.3em;text-transform:uppercase;margin-bottom:18px}
+.kicker b{color:var(--yellow);font-weight:700}
+.big{font-family:var(--disp);font-size:clamp(64px,15vw,190px);line-height:.92;letter-spacing:.005em;user-select:none}
+.big span{display:inline-block;transition:transform .25s ease}
+.big span:hover{transform:translateY(-8px) rotate(-2deg)}
+.big .c1{color:var(--white)}.big .c2{color:var(--yellow)}.big .c3{color:var(--green)}.big .c4{color:var(--red)}
+.hero-dates{margin:26px 0 8px}
+.hero-sub{font-family:var(--mono);font-size:13px;color:var(--ink-dim);letter-spacing:.12em}
+.count{display:flex;justify-content:center;gap:12px;margin:36px 0 10px;flex-wrap:wrap}
+.count .cell{border:1px solid var(--line);background:rgba(255,255,255,.06);min-width:88px;padding:14px 10px 10px}
+.count .num{font-family:var(--disp);font-size:clamp(30px,5vw,44px);line-height:1}
+.count .lab{font-family:var(--mono);font-size:11px;letter-spacing:.2em;color:var(--ink-dim);margin-top:6px}
+.count-label{font-family:var(--mono);font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:var(--ink-dim);margin-bottom:14px}
+.hero-cta{display:flex;justify-content:center;align-items:center;gap:14px;margin-top:30px;flex-wrap:wrap}
+.close-tag{font-family:var(--mono);font-size:12px;letter-spacing:.08em;border:1px solid var(--red);background:repeating-linear-gradient(45deg,rgba(230,51,37,.28),rgba(230,51,37,.28) 6px,rgba(230,51,37,.14) 6px,rgba(230,51,37,.14) 12px);padding:10px 16px}
+.doodle{position:absolute;font-family:var(--mono);font-size:12px;color:var(--line);pointer-events:none}
+
+/* ---------- about ---------- */
+.about-grid{display:grid;grid-template-columns:1.25fr .9fr;gap:56px;align-items:start}
+.about-grid p+p{margin-top:16px}
+.spec-list{border:1px solid var(--line)}
+.spec-list .row{display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding:14px 18px;font-family:var(--mono);font-size:13px}
+.spec-list .row+.row{border-top:1px solid var(--line-soft)}
+.spec-list .k{color:var(--ink-dim);letter-spacing:.06em}
+.spec-list .v{font-weight:700;text-align:right}
+.spec-head{font-family:var(--mono);font-size:11px;letter-spacing:.2em;padding:10px 18px;border-bottom:1px solid var(--line);background:rgba(255,255,255,.06)}
+.build-note{margin-top:56px;border:1px solid var(--line);padding:32px}
+.build-note h3{color:var(--yellow)}
+.concepts{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin-top:24px}
+.concept{border:1px dashed var(--line);padding:20px}
+.concept .fig{font-family:var(--mono);font-size:11px;letter-spacing:.16em;color:var(--ink-dim);margin-bottom:10px}
+.concept p{font-size:14px;color:var(--ink-dim)}
+.concept strong{display:block;font-size:15px;color:var(--white);margin-bottom:6px;font-weight:600}
+@media (max-width:820px){.about-grid{grid-template-columns:1fr;gap:36px}}
+
+/* ---------- timeline ---------- */
+.tl{position:relative;margin-top:16px;padding-left:34px}
+.tl::before{content:"";position:absolute;left:8px;top:6px;bottom:6px;border-left:1px dashed var(--line)}
+.tl-item{position:relative;padding:0 0 34px 12px}
+.tl-item:last-child{padding-bottom:0}
+.tl-item::before{content:"";position:absolute;left:-31px;top:5px;width:11px;height:11px;border:2px solid var(--white);background:var(--blue);border-radius:50%}
+.tl-item.mark-g::before{background:var(--green);border-color:var(--green)}
+.tl-item.mark-y::before{background:var(--yellow);border-color:var(--yellow)}
+.tl-item.mark-r::before{background:var(--red);border-color:var(--red)}
+.tl-date{font-family:var(--mono);font-size:12px;letter-spacing:.16em;color:var(--yellow);text-transform:uppercase}
+.tl-item h4{font-family:var(--body);font-weight:600;font-size:18px;margin:4px 0 4px}
+.tl-item p{font-size:14.5px;color:var(--ink-dim);max-width:640px}
+.tl-tag{font-family:var(--mono);font-size:10px;letter-spacing:.14em;border:1px solid var(--line);padding:2px 8px;margin-left:8px;vertical-align:2px;color:var(--ink-dim)}
+.funnel{display:flex;gap:0;align-items:stretch;margin-top:48px;font-family:var(--mono);text-align:center}
+.funnel div{flex:1;border:1px solid var(--line);padding:18px 8px}
+.funnel div+div{border-left:none}
+.funnel .n{font-family:var(--disp);font-size:clamp(26px,4vw,40px);line-height:1}
+.funnel .t{font-size:11px;letter-spacing:.14em;color:var(--ink-dim);margin-top:6px}
+.funnel .hot .n{color:var(--yellow)}
+
+/* ---------- prizes ---------- */
+.prize-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:18px}
+.prize{border:1px solid var(--line);padding:34px 26px;text-align:center;position:relative}
+.prize.first{border:2px solid var(--yellow)}
+.prize .place{font-family:var(--mono);font-size:12px;letter-spacing:.22em;color:var(--ink-dim)}
+.prize .amt{font-family:var(--disp);font-size:clamp(34px,4.6vw,52px);margin:14px 0 6px}
+.prize.first .amt{color:var(--yellow)}
+.prize .note{font-family:var(--mono);font-size:11.5px;color:var(--ink-dim);letter-spacing:.05em}
+.stamp{position:absolute;top:14px;right:14px;font-family:var(--mono);font-size:10px;letter-spacing:.12em;border:1px solid var(--yellow);color:var(--yellow);padding:3px 8px;transform:rotate(4deg)}
+.extras{margin-top:20px;display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:18px}
+.extra{border:1px dashed var(--line);padding:22px 24px}
+.extra h4{font-family:var(--mono);font-size:13px;letter-spacing:.1em;margin-bottom:8px;text-transform:uppercase}
+.extra p{font-size:14px;color:var(--ink-dim)}
+.extra .badge{font-size:10px;border:1px solid var(--line);padding:2px 7px;margin-left:6px;color:var(--ink-dim);letter-spacing:.1em}
+
+/* ---------- workshops ---------- */
+.ws-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:40px;align-items:start}
+.ws-card{border:1px solid var(--line);padding:20px 22px;margin-bottom:14px}
+.ws-card .top{display:flex;justify-content:space-between;gap:12px;align-items:baseline;flex-wrap:wrap}
+.ws-card h4{font-family:var(--body);font-weight:600;font-size:17px}
+.ws-card .when{font-family:var(--mono);font-size:12px;color:var(--yellow);letter-spacing:.1em;white-space:nowrap}
+.ws-card p{font-size:14px;color:var(--ink-dim);margin-top:6px}
+.req{font-family:var(--mono);font-size:10px;letter-spacing:.14em;padding:2px 8px;border:1px solid var(--red);color:var(--white);background:rgba(230,51,37,.3)}
+.opt{font-family:var(--mono);font-size:10px;letter-spacing:.14em;padding:2px 8px;border:1px solid var(--line);color:var(--ink-dim)}
+.tech-list{columns:2;column-gap:28px;list-style:none;margin-top:14px}
+.tech-list li{font-family:var(--mono);font-size:12.5px;color:var(--ink-dim);padding:7px 0;border-bottom:1px solid var(--line-soft);break-inside:avoid}
+.tech-list li::before{content:"+ ";color:var(--green)}
+.map-box{border:1px solid var(--line)}
+.map-box iframe{width:100%;height:340px;border:0;display:block;filter:saturate(.85)}
+.map-cap{font-family:var(--mono);font-size:11.5px;letter-spacing:.08em;color:var(--ink-dim);padding:12px 16px;border-top:1px solid var(--line)}
+.venues{display:flex;flex-wrap:wrap;gap:10px;margin:0 0 16px}
+.venues span{font-family:var(--mono);font-size:11.5px;letter-spacing:.08em;border:1px dashed var(--line);padding:6px 12px}
+@media (max-width:900px){.ws-grid{grid-template-columns:1fr}.tech-list{columns:1}}
+
+/* ---------- people ---------- */
+.people-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px}
+.person{border:1px dashed var(--line);padding:26px 18px;text-align:center}
+.person .ava{width:64px;height:64px;border:1px solid var(--line);border-radius:50%;margin:0 auto 14px;display:flex;align-items:center;justify-content:center;background:repeating-linear-gradient(45deg,rgba(255,255,255,.07),rgba(255,255,255,.07) 5px,transparent 5px,transparent 10px)}
+.person .ava svg{width:26px;height:26px;stroke:var(--ink-dim)}
+.person h4{font-family:var(--mono);font-size:12px;letter-spacing:.14em;color:var(--yellow)}
+.person p{font-family:var(--mono);font-size:11px;color:var(--ink-dim);margin-top:4px;letter-spacing:.06em}
+.mentor-note{border:1px solid var(--line);padding:26px 28px;margin-top:36px;display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:26px}
+.mentor-note h4{font-family:var(--mono);font-size:13px;letter-spacing:.12em;text-transform:uppercase;margin-bottom:8px;color:var(--green)}
+.mentor-note p{font-size:14px;color:var(--ink-dim)}
+
+/* ---------- winners & gallery ---------- */
+.win-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px}
+.win{border:1px solid var(--line);padding:24px}
+.win .yr-badge{font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.14em;display:inline-block;padding:3px 10px;color:var(--blue)}
+.win .yr-badge.y24{background:var(--green)}
+.win .yr-badge.y25{background:var(--yellow)}
+.win h4{font-family:var(--body);font-weight:600;font-size:17px;margin:12px 0 6px}
+.win p{font-size:14px;color:var(--ink-dim)}
+.gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin-top:40px}
+.fig-ph{border:1px solid var(--white);aspect-ratio:4/3;position:relative;overflow:hidden;display:flex;align-items:flex-end}
+.fig-ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.win-photo{width:100%;aspect-ratio:4/3;object-fit:cover;border:1px solid var(--line);margin-bottom:16px}
+.fig-ph span{position:relative;z-index:1;font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;color:#fff;padding:6px 10px;background:rgba(33,48,214,.88);width:100%}
+
+/* ---------- faq ---------- */
+.faq{max-width:820px}
+.faq details{border-bottom:1px solid var(--line-soft)}
+.faq summary{cursor:pointer;list-style:none;display:flex;gap:16px;align-items:baseline;padding:18px 4px;font-weight:600;font-size:16.5px}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::before{content:"[+]";font-family:var(--mono);font-size:13px;color:var(--yellow);flex:0 0 auto}
+.faq details[open] summary::before{content:"[\2013]"}
+.faq details p, .faq details ul{padding:0 4px 20px 45px;color:var(--ink-dim);font-size:15px}
+.faq details ul{list-style:none}
+.faq details li{padding:3px 0}
+.faq details li::before{content:"\2192 ";color:var(--green)}
+.faq summary:focus-visible{outline:2px solid var(--yellow);outline-offset:2px}
+
+/* ---------- partners / footer ---------- */
+.logo-row{display:flex;flex-wrap:wrap;gap:18px;align-items:stretch;margin-top:12px}
+.logo-slot{border:1px solid var(--line);min-width:190px;min-height:96px;flex:1;display:flex;align-items:center;justify-content:center;padding:18px 22px}
+.logo-slot span{font-family:var(--disp);font-size:clamp(18px,2.2vw,24px);letter-spacing:.04em}
+.logo-slot img{max-height:56px;width:auto}
+.logo-slot.sup span{color:var(--ink-dim);font-family:var(--body);font-weight:600;font-size:clamp(16px,2vw,21px)}
+footer{border-top:1px solid var(--line);padding:56px 0 40px}
+.foot-grid{display:flex;justify-content:space-between;gap:36px;flex-wrap:wrap;align-items:flex-end}
+.foot-left p{font-family:var(--mono);font-size:12.5px;color:var(--ink-dim);letter-spacing:.05em;line-height:2}
+.foot-left .fl-title{color:var(--white);font-weight:700;letter-spacing:.14em}
+.tblock{border:1px solid var(--line);border-collapse:collapse;font-family:var(--mono);font-size:10.5px;color:var(--ink-dim)}
+.tblock td{border:1px solid var(--line);padding:6px 14px;letter-spacing:.1em}
+.legal{font-family:var(--mono);font-size:11px;color:rgba(255,255,255,.45);margin-top:36px;letter-spacing:.06em}
+
+/* ---------- background decorations ---------- */
+section::after{content:"+";position:absolute;top:20px;right:28px;font-family:var(--mono);font-size:14px;color:rgba(255,255,255,.25);pointer-events:none}
+.deco2{position:absolute;pointer-events:none;opacity:.9}
+.deco2 svg{display:block}
+.deco2 .lbl{font-family:var(--mono);font-size:11px;color:rgba(255,255,255,.22);letter-spacing:.1em}
+@media (max-width:960px){.deco2{display:none}}
+
+/* ---------- acronym strip ---------- */
+.acro{font-family:var(--mono);font-size:clamp(9.5px,1.35vw,13px);letter-spacing:.16em;color:var(--ink-dim);margin-top:16px;display:flex;justify-content:center;flex-wrap:wrap;gap:6px 14px}
+.acro b{font-weight:700}
+.acro .aw{color:var(--white)}.acro .ay{color:var(--yellow)}.acro .ag{color:var(--green)}.acro .ar{color:var(--red)}
+
+/* ---------- prizes podium ---------- */
+.podium{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;align-items:end;margin-top:40px}
+.podium .prize{position:relative;overflow:hidden;background:rgba(255,255,255,.03)}
+.podium .prize::before{content:"+";position:absolute;top:10px;left:12px;font-family:var(--mono);font-size:13px;color:rgba(255,255,255,.3)}
+.prize .ghost{position:absolute;right:2px;bottom:-34px;font-family:var(--disp);font-size:160px;line-height:1;color:rgba(255,255,255,.06);pointer-events:none;user-select:none}
+.prize .amt-line{font-family:var(--mono);font-size:11px;color:var(--ink-dim);letter-spacing:.06em;margin-top:8px}
+.p1{border:2px solid var(--yellow);padding-top:58px;padding-bottom:44px;background:linear-gradient(180deg,rgba(245,200,66,.1),rgba(245,200,66,0) 55%)}
+.p1 .ghost{color:rgba(245,200,66,.12)}
+.p2{border-top:3px solid var(--green)}
+.p3{border-top:3px solid var(--red)}
+.hatch-bar{height:8px;margin-top:22px;background:repeating-linear-gradient(45deg,var(--yellow),var(--yellow) 5px,transparent 5px,transparent 11px);opacity:.55}
+@media (max-width:760px){.podium{grid-template-columns:1fr}.p1{order:-1;padding-top:44px}}
+
+/* ---------- tech workshop grid ---------- */
+.tech-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(215px,1fr));gap:10px;margin-top:16px}
+.tech{border:1px dashed var(--line);padding:13px 15px}
+.tech h5{font-family:var(--mono);font-size:12px;letter-spacing:.07em;font-weight:700}
+.tech h5::before{content:"+ ";color:var(--green)}
+.tech p{font-size:12.5px;color:var(--ink-dim);margin-top:4px;line-height:1.5}
+
+/* ---------- FAQ categories ---------- */
+.faq-cat{font-family:var(--mono);font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--yellow);margin:38px 0 2px}
+.faq-cat:first-child{margin-top:8px}
+.faq details ol{padding:0 4px 20px 62px;color:var(--ink-dim);font-size:15px;list-style:decimal}
+.faq details ol li{padding:3px 0}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-in">
+    <a class="logo" href="#top"><span class="l1">ID</span><span class="l2">E</span><span class="l3">A</span><span class="l4">T</span><span class="l1">E</span><span class="yr">2026</span></a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#about">about</a></li>
+      <li><a href="#timeline">timeline</a></li>
+      <li><a href="#prizes">prizes</a></li>
+      <li><a href="#workshops">workshops</a></li>
+      <li><a href="#people">judges + mentors</a></li>
+      <li><a href="#winners">past winners</a></li>
+      <li><a href="#faq">faq</a></li>
+    </ul>
+    <div style="display:flex;gap:10px;align-items:center">
+      <a class="btn btn-y btn-sm nav-register" href="https://forms.office.com/r/YuJ9TF7YBT" target="_blank" rel="noopener">Register</a>
+      <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="navLinks">menu</button>
+    </div>
+  </div>
+</nav>
+
+<header id="top">
+  <svg class="grid-bg" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <g stroke="rgba(255,255,255,0.13)" stroke-width="1" fill="none" id="warpGrid"></g>
+    <g stroke="rgba(255,255,255,0.35)" stroke-width="1" fill="none">
+      <path d="M 120 640 L 220 520 L 300 660 Z"/>
+      <path d="M 150 610 L 235 545" stroke-dasharray="5 5"/>
+      <circle cx="1230" cy="620" r="85"/>
+      <path d="M 1130 620 H 1330 M 1230 520 V 720" stroke-dasharray="4 6"/>
+      <rect x="1150" y="90" width="150" height="110" transform="rotate(12 1225 145)"/>
+      <rect x="1165" y="105" width="120" height="80" transform="rotate(12 1225 145)" stroke-dasharray="3 4"/>
+    </g>
+  </svg>
+  <div class="doodle" style="top:16%;right:9%">32</div>
+  <div class="doodle" style="top:58%;right:6%">CL</div>
+  <div class="doodle" style="bottom:22%;left:7%">2026</div>
+
+  <div class="wrap hero-in">
+    <p class="kicker">From blueprint <b>to build</b></p>
+    <h1 class="big" aria-label="IDEATE">
+      <span class="c1">I</span><span class="c2">D</span><span class="c1">E</span><span class="c1">A</span><span class="c3">T</span><span class="c4">E</span>
+    </h1>
+    <p class="big" style="font-size:clamp(28px,5vw,56px);margin-top:2px" aria-hidden="true"><span class="c1">2</span><span class="c3">0</span><span class="c4">2</span><span class="c2">6</span></p>
+    <p class="acro"><span><b class="aw">I</b>NNOVATION</span><span><b class="ay">D</b>ESIGN</span><span><b class="aw">E</b>XECUTION</span><span><b class="aw">A</b>DAPTABILITY</span><span><b class="ag">T</b>ECHNOLOGY</span><span><b class="ar">E</b>NTREPRENEURSHIP</span></p>
+
+    <div class="hero-dates"><span class="dimension">&nbsp;15 AUG &mdash; 21 OCT 2026&nbsp;</span></div>
+    <p class="hero-sub">CDE INNOVATION CHALLENGE &middot; 10-WEEK MAKEATHON &middot; OPEN TO ALL NUS UNDERGRADUATES</p>
+
+    <div style="margin-top:40px">
+      <p class="count-label" id="countLabel">Countdown to launch day</p>
+      <div class="count" id="countdown" role="timer" aria-live="off">
+        <div class="cell"><div class="num" id="cd-d">--</div><div class="lab">DAYS</div></div>
+        <div class="cell"><div class="num" id="cd-h">--</div><div class="lab">HRS</div></div>
+        <div class="cell"><div class="num" id="cd-m">--</div><div class="lab">MINS</div></div>
+        <div class="cell"><div class="num" id="cd-s">--</div><div class="lab">SECS</div></div>
+      </div>
+    </div>
+
+    <div class="hero-cta" id="register">
+      <a class="btn btn-y" href="https://forms.office.com/r/YuJ9TF7YBT" target="_blank" rel="noopener">Register your team</a>
+      <a class="btn" href="#timeline">See the build sequence</a>
+      <span class="close-tag">&#9888; SIGNUPS CLOSE 14 AUG</span>
+    </div>
+  </div>
+</header>
+
+<section id="about">
+  <div class="wrap">
+    <div class="deco2" style="top:56px;right:60px" aria-hidden="true">
+      <svg width="120" height="100" viewBox="0 0 120 100" fill="none" stroke="rgba(255,255,255,0.16)"><path d="M12 88 L60 14 L108 88 Z"/><path d="M28 72 L76 30" stroke-dasharray="4 5"/><path d="M12 94 H108" /><path d="M12 90 V98 M108 90 V98"/></svg>
+      <span class="lbl">SCALE 1:1</span>
+    </div>
+    <p class="eyebrow rv"><span class="sheetno">01</span> ABOUT IDEATE</p>
+    <div class="about-grid">
+      <div class="rv">
+        <h2>Where ideas <span class="accent-y">take form</span></h2>
+        <p>IDEATE is the CDE Innovation Challenge: a 10-week makeathon that invites NUS students from every discipline to identify a real-world problem and build a working prototype.</p>
+        <p>The name carries our standing theme, <strong>IDEAs To Everything</strong>: everything begins from an idea, and an idea holds the power to become everything. This year's edition takes that from blueprint to build.</p>
+        <p>Participants will form a team, pass a preliminary design review, and prototype through recess week with industry mentors. Teams that make the final six after exhibiting at the semi-finals will then pitch for a share of the prize pool on the finals stage.</p>
+      </div>
+      <div class="rv">
+        <div class="spec-list">
+          <div class="spec-head">GENERAL SPECIFICATIONS</div>
+          <div class="row"><span class="k">DURATION</span><span class="v">10 WEEKS</span></div>
+          <div class="row"><span class="k">TEAMS</span><span class="v">UP TO 60</span></div>
+          <div class="row"><span class="k">TEAM SIZE</span><span class="v">3&ndash;5 MEMBERS</span></div>
+          <div class="row"><span class="k">PARTICIPANTS</span><span class="v">300 MAX</span></div>
+          <div class="row"><span class="k">ELIGIBILITY</span><span class="v">ALL NUS UNDERGRADS</span></div>
+          <div class="row"><span class="k">TOP PRIZE</span><span class="v accent-y">S$10,000</span></div>
+          <div class="row"><span class="k">VENUES (LAUNCH, SEMIS + FINALS)</span><span class="v">BLK EA + E2A, NUS</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="build-note rv">
+      <h3>&#9998; What you should build</h3>
+      <p>We're after <strong>mechatronic systems that interact with the physical world</strong>: solutions combining mechanical, electronic and software components to do something tangible. App-, website- or AI-only solutions will be marked down on innovation. VR counts if it includes physical interaction hardware like controllers or sensors.</p>
+      <p class="dim" style="font-family:var(--mono);font-size:12px;margin-top:10px;letter-spacing:.05em">The concepts below are illustrative examples, not past submissions.</p>
+      <div class="concepts">
+        <div class="concept"><div class="fig">EXAMPLE 1</div><strong>Solar-powered portable cooking kit</strong><p>Collapsible cookware and foldable panels that let people cook safely when the grid or fuel supply fails.</p></div>
+        <div class="concept"><div class="fig">EXAMPLE 2</div><strong>Adaptive water management system</strong><p>Sensors, filtration and automated valves that switch a home between rainwater, greywater and mains supply.</p></div>
+        <div class="concept"><div class="fig">EXAMPLE 3</div><strong>Climate-responsive adaptive desk</strong><p>Phase-change materials and temperature-sensitive vents that keep a work surface comfortable without aircon.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="timeline">
+  <div class="wrap">
+    <p class="eyebrow rv"><span class="sheetno">02</span> TIMELINE</p>
+    <h2 class="rv">The build <span class="accent-g">sequence</span></h2>
+    <p class="dim rv" style="max-width:640px">Ten weeks, nine checkpoints. Three workshops are compulsory for every team, and each team must attend at least two technical workshops during recess week.</p>
+
+    <div class="tl" style="margin-top:44px">
+      <div class="tl-item mark-g rv"><span class="tl-date">15 Aug &middot; Sat</span><span class="tl-tag">COMPULSORY</span><h4>Launch Day + Design Thinking Workshop</h4><p>Opening ceremony with an address by CDE Vice Dean Prof Silvija, the challenge brief, rules, and your first compulsory workshop. Lunch and networking with NUS Enterprise, iDP and iDPSC booths.</p></div>
+      <div class="tl-item rv"><span class="tl-date">19 Aug &middot; Wed</span><span class="tl-tag">COMPULSORY</span><h4>Innovation Mindset Workshop</h4><p>Lecture by Prof Khoo Eng Tat, a panel discussion, and a hands-on problem-solving session, with NUSOne and NUS Enterprise.</p></div>
+      <div class="tl-item mark-y rv"><span class="tl-date">30 Aug &middot; Sun</span><h4>Preliminary Design Review submission</h4><p>A 1&ndash;3 minute video: your problem statement, lo-fi prototype and rationale. Weighted 40% design, 40% engineering, 20% business.</p></div>
+      <div class="tl-item rv"><span class="tl-date">2 Sep &middot; Wed</span><h4>Top 16 teams announced</h4><p>Judges shortlist 16 of the 60 teams to advance to the prototyping stage.</p></div>
+      <div class="tl-item rv"><span class="tl-date">Sep</span><h4>Hi-fi prototyping</h4><p>Build your working prototype. Book sessions with student mentors, virtually or in person, whenever you need them.</p></div>
+      <div class="tl-item rv"><span class="tl-date">20&ndash;28 Sep</span><span class="tl-tag">MIN. 2 PER TEAM</span><h4>Technical workshops</h4><p>Recess-week skills sessions conducted by Prof Tang Kuok Zea: machining, PCB design, 3D printing, CAD, soldering and more. <a href="#workshops" style="color:var(--yellow)">See the full list</a>.</p></div>
+      <div class="tl-item rv"><span class="tl-date">28 Sep &ndash; 4 Oct</span><span class="tl-tag">COMPULSORY</span><h4>Industrial mentor check-in</h4><p>Send a 100-word project summary, then meet your industrial mentor for a consultation on feasibility, rigour and showcase readiness.</p></div>
+      <div class="tl-item rv"><span class="tl-date">7 Oct &middot; Wed</span><span class="tl-tag">COMPULSORY</span><h4>Business Pitch Workshop</h4><p>Pitch structure, storytelling and demo prep with Prof Khoo Eng Tat, ahead of the finals.</p></div>
+      <div class="tl-item mark-r rv"><span class="tl-date">15 Oct &middot; Wed</span><h4>Semi-finals exhibition + Finals pitch</h4><p>Sixteen teams exhibit science-booth style; six judges pick the final six. Those six deliver a 5-minute business pitch plus Q&amp;A to a panel of three. Audience members also stand to win prizes in a lucky draw.</p></div>
+      <div class="tl-item mark-r rv"><span class="tl-date">21 Oct</span><h4>Award ceremony at CDE Innovation Day</h4><p>Top three teams receive their prizes on the Innovation Day stage.</p></div>
+    </div>
+
+    <div class="funnel rv">
+      <div><div class="n">60</div><div class="t">TEAMS REGISTER</div></div>
+      <div><div class="n">16</div><div class="t">PASS THE PDR</div></div>
+      <div class="hot"><div class="n">6</div><div class="t">REACH FINALS</div></div>
+      <div class="hot"><div class="n">3</div><div class="t">WIN PRIZES</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="prizes">
+  <div class="wrap">
+    <div class="deco2" style="top:70px;right:80px" aria-hidden="true">
+      <svg width="120" height="120" viewBox="0 0 120 120" fill="none" stroke="rgba(255,255,255,0.16)"><circle cx="60" cy="60" r="46"/><path d="M4 60 H116 M60 4 V116" stroke-dasharray="4 6"/></svg>
+      <span class="lbl">&Oslash; 10K</span>
+    </div>
+    <p class="eyebrow rv"><span class="sheetno">03</span> PRIZES + OPPORTUNITIES</p>
+    <h2 class="rv">Win more than <span class="accent-y">prize money</span></h2>
+    <div class="podium rv">
+      <div class="prize p2"><div class="ghost">2</div><div class="place">2ND PLACE</div><div class="amt">S$3,000</div><div class="amt-line">|&larr; CASH PRIZE &rarr;|</div></div>
+      <div class="prize p1"><span class="stamp">GRAND PRIZE</span><div class="ghost">1</div><div class="place">1ST PLACE</div><div class="amt">S$10,000</div><div class="amt-line">|&larr; NUS ENTERPRISE VIP GRANT &rarr;|</div><div class="hatch-bar" aria-hidden="true"></div></div>
+      <div class="prize p3"><div class="ghost">3</div><div class="place">3RD PLACE</div><div class="amt">S$1,000</div><div class="amt-line">|&larr; CASH PRIZE &rarr;|</div></div>
+    </div>
+    <div class="extras">
+      <div class="extra rv"><h4>Special categories <span class="badge">S$500</span></h4><p>Best Exhibition, Most Sustainable and Audience Choice, awarded in vouchers on finals day.</p></div>
+      <div class="extra rv"><h4>Houses &amp; Halls prize <span class="badge">S$500</span></h4><p>Awarded to the top-performing team representing an NUS house or hall.</p></div>
+      <div class="extra rv"><h4>Incubation at The Hangar</h4><p>Top 3 teams get the opportunity to incubate their solution with NUS Enterprise at The Hangar.</p></div>
+      <div class="extra rv"><h4>For all 16 semi-finalists</h4><p>A recommendation for NOC applications, internship opportunities, and a prototyping budget of S$1,000 (S$800 for non-iDP students) for those who enrol in CDE3301 or CDE4301.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="workshops">
+  <div class="wrap">
+    <p class="eyebrow rv"><span class="sheetno">04</span> WORKSHOPS + VENUES</p>
+    <h2 class="rv">Learn it, <span class="accent-g">then build it</span></h2>
+    <div class="ws-grid" style="margin-top:36px">
+      <div>
+        <div class="ws-card rv"><div class="top"><h4>Introduction to Design Thinking</h4><span class="when">15 AUG</span></div><p>Empathise, define, ideate, prototype, test. Introduction to sustainable design principles and the jobs-to-be-done framework.</p><p style="margin-top:10px"><span class="req">COMPULSORY</span> <span class="opt">LT7A, BLK EA</span></p></div>
+        <div class="ws-card rv"><div class="top"><h4>Innovation Mindset Workshop</h4><span class="when">19 AUG</span></div><p>A lecture on the innovation mindset by Prof Khoo Eng Tat, followed by a founder panel and hands-on problem-solving activities with NUSOne and NUS Enterprise.</p><p style="margin-top:10px"><span class="req">COMPULSORY</span> <span class="opt">VENUE TBC</span></p></div>
+        <div class="ws-card rv"><div class="top"><h4>Business Pitch Workshop</h4><span class="when">7 OCT</span></div><p>How to structure and deliver your finals pitch, with Prof Khoo Eng Tat.</p><p style="margin-top:10px"><span class="req">COMPULSORY</span> <span class="opt">VENUE TBC</span></p></div>
+        <div class="ws-card rv">
+          <div class="top"><h4>Technical workshops</h4><span class="when">20&ndash;28 SEP</span></div>
+          <p>Hands-on workshops conducted by Prof Tang Kuok Zea. Every team must attend at least two. Sign-up priority for IDEATE participants.</p>
+          <div class="tech-grid">
+            <div class="tech"><h5>Lathe machining</h5><p>Turn shafts, pins and cylindrical parts on the workshop lathe.</p></div>
+            <div class="tech"><h5>Mill machining</h5><p>Cut slots, faces and holes with precision milling.</p></div>
+            <div class="tech"><h5>PCB design + fabrication</h5><p>Design your own circuit board and take it through fabrication.</p></div>
+            <div class="tech"><h5>UWB communications</h5><p>Set up ultra-wideband links for precise positioning and comms.</p></div>
+            <div class="tech"><h5>Unity for VR</h5><p>Build interactive VR applications in the Unity engine.</p></div>
+            <div class="tech"><h5>3D printing + laser cutting</h5><p>Rapid-prototype parts and enclosures in the makerspace.</p></div>
+            <div class="tech"><h5>Vacuum former + acrylic bender</h5><p>Shape plastic casings, panels and housings for your build.</p></div>
+            <div class="tech"><h5>SolidWorks</h5><p>Model parts and assemblies in parametric CAD.</p></div>
+            <div class="tech"><h5>Blender + AI design tools</h5><p>3D modelling and rendering with AI-assisted workflows.</p></div>
+            <div class="tech"><h5>Text-to-speech with Amazon Polly</h5><p>Build a serverless voice application on AWS.</p></div>
+            <div class="tech"><h5>Soldering techniques</h5><p>Through-hole and surface-mount soldering done properly.</p></div>
+            <div class="tech"><h5>Onshape CAD</h5><p>Design collaboratively in cloud-based CAD, as a team.</p></div>
+          </div>
+          <p style="margin-top:12px"><span class="opt">MIN. 2 PER TEAM</span> <span class="opt">INNOVATION &amp; DESIGN HUB (EA) + ELECTRONICS STUDIO (E2A)</span></p>
+        </div>
+      </div>
+      <div class="rv">
+        <div class="venues">
+          <span>&#9906; LT7A, BLK EA</span>
+          <span>&#9906; INNOVATION &amp; DESIGN HUB, EA</span>
+          <span>&#9906; ELECTRONICS STUDIO, E2A</span>
+        </div>
+        <div class="map-box">
+          <iframe title="Map of NUS College of Design and Engineering, Block EA" src="https://www.google.com/maps?q=Block+EA,+9+Engineering+Drive+1,+National+University+of+Singapore&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          <div class="map-cap">HOW TO GET THERE &middot; Kent Ridge MRT (CC24), then NUS internal shuttle D2 to IT / CELC stop. Blocks EA and E2A are a 3-minute walk apart.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="people">
+  <div class="wrap">
+    <p class="eyebrow rv"><span class="sheetno">05</span> JUDGES + MENTORS</p>
+    <h2 class="rv">The judging <span class="accent-r">panel</span></h2>
+    <p class="dim rv" style="max-width:640px">Semi-finals will be assessed by six judges with an engineering focus, and finals by three judges with a business focus. Judges will hail from NUS Enterprise and iDP.</p>
+    <div class="people-grid" style="margin-top:36px">
+      <div class="person rv"><div class="ava"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.5-7 8-7s8 3 8 7"/></svg></div><h4>TBA</h4><p>SEMI-FINALS JUDGE<br>REVEALING SOON</p></div>
+      <div class="person rv"><div class="ava"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.5-7 8-7s8 3 8 7"/></svg></div><h4>TBA</h4><p>SEMI-FINALS JUDGE<br>REVEALING SOON</p></div>
+      <div class="person rv"><div class="ava"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.5-7 8-7s8 3 8 7"/></svg></div><h4>TBA</h4><p>FINALS JUDGE<br>REVEALING SOON</p></div>
+      <div class="person rv"><div class="ava"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.5-7 8-7s8 3 8 7"/></svg></div><h4>TBA</h4><p>FINALS JUDGE<br>REVEALING SOON</p></div>
+    </div>
+    <div class="mentor-note rv">
+      <div><h4>Student mentors</h4><p>Consultation slots can be booked throughout the prototyping phase, virtually or in person, for help with design and engineering decisions.</p></div>
+      <div><h4>Industrial mentors</h4><p>Past IDEATE winners and industry professionals. Each semi-finalist team must attend one compulsory consultation between 28 Sep and 4 Oct.</p></div>
+      <div><h4>Facilities</h4><p>Prototype in the Innovation &amp; Design Hub and Electronics Studio, with full makerspace access throughout the challenge.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="winners">
+  <div class="wrap">
+    <div class="deco2" style="top:64px;right:120px" aria-hidden="true">
+      <svg width="130" height="90" viewBox="0 0 130 90" fill="none" stroke="rgba(255,255,255,0.16)"><rect x="8" y="8" width="90" height="60" transform="rotate(6 53 38)"/><path d="M14 70 L98 14" stroke-dasharray="3 5"/></svg>
+      <span class="lbl">AS BUILT</span>
+    </div>
+    <p class="eyebrow rv"><span class="sheetno">06</span> PAST WINNERS + GALLERY</p>
+    <h2 class="rv">As built: <span class="accent-y">IDEATE 2025</span></h2>
+    <div class="win-grid" style="margin-top:36px">
+      <div class="win rv"><img class="win-photo" src="img/bmeter.jpg" alt="Team bmETER receiving the top prize at the IDEATE 2025 finale"><span class="yr-badge y25">IDEATE 2025 &middot; CHAMPION</span><h4>Team bmETER &mdash; FREESTRYDE</h4><p>An intelligent compression sock for lymphedema patients. It uses predictive technology to activate targeted compression only when the user actually needs it, resolving the discomfort of traditional constant-pressure garments.</p></div>
+      <div class="win rv"><img class="win-photo" src="img/cs-eli.jpg" alt="Team CS + Eli, first runner-up at the IDEATE 2025 finale"><span class="yr-badge y25">IDEATE 2025 &middot; 1ST RUNNER-UP</span><h4>Team CS + Eli &mdash; Advanced Unified Risk Assessment System</h4><p>A digital health platform built jointly by Psychology and Computing students, making mobility risk assessment safer and far more accessible for elderly adults and their caregivers.</p></div>
+      <div class="win rv"><img class="win-photo" src="img/kiwi.jpg" alt="Team Kiwi, second runner-up at the IDEATE 2025 finale"><span class="yr-badge y25">IDEATE 2025 &middot; 2ND RUNNER-UP</span><h4>Team Kiwi &mdash; RescueRight</h4><p>An interdisciplinary system spanning Medicine, Computing, Mechanical and Electrical Engineering, designed to close functional gaps in medical emergency training protocols.</p></div>
+    </div>
+    <div class="gallery">
+      <div class="fig-ph rv"><img src="img/launch-day.jpg" alt="Participants at the IDEATE 2025 launch day in the lecture theatre" loading="lazy"><span>FIG. 01 &mdash; LAUNCH DAY, 2025</span></div>
+      <div class="fig-ph rv"><img src="img/prototyping.jpg" alt="Teams at a hands-on electronics prototyping workshop" loading="lazy"><span>FIG. 02 &mdash; PROTOTYPING WORKSHOP</span></div>
+      <div class="fig-ph rv"><img src="img/semifinals.jpg" alt="Booth-style semi-finals exhibition in the atrium" loading="lazy"><span>FIG. 03 &mdash; SEMI-FINALS EXHIBITION</span></div>
+      <div class="fig-ph rv"><img src="img/finals-2025-group.jpg" alt="All finalists and judges with prize cheques at the IDEATE 2025 finale" loading="lazy"><span>FIG. 04 &mdash; FINALS PITCH, 2025</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="faq">
+  <div class="wrap">
+    <div class="deco2" style="top:80px;right:70px" aria-hidden="true">
+      <svg width="110" height="110" viewBox="0 0 110 110" fill="none" stroke="rgba(255,255,255,0.16)"><path d="M20 92 L55 20 L90 92 Z"/><path d="M32 78 H78" stroke-dasharray="4 5"/></svg>
+    </div>
+    <p class="eyebrow rv"><span class="sheetno">07</span> FAQ</p>
+    <h2 class="rv">Frequently asked <span class="accent-g">questions</span></h2>
+    <div class="faq rv" style="margin-top:8px">
+
+      <h3 class="faq-cat">General &amp; Eligibility</h3>
+      <details><summary>Who can participate in IDEATE 2026?</summary><p>The competition is open exclusively to current NUS undergraduate students from any faculty or discipline. Interdisciplinary collaboration is highly encouraged!</p></details>
+      <details><summary>What is the required team size?</summary><p>Teams must consist of 3 to 5 members. All members must be NUS students.</p></details>
+      <details><summary>Do I need an idea or hardware experience before signing up?</summary><p>No. The Design Thinking workshop on Launch Day helps you find and frame a problem, and the recess-week technical workshops cover skills from soldering to CAD to PCB fab. Cross-disciplinary teams are encouraged.</p></details>
+
+      <h3 class="faq-cat">Project &amp; Deliverables</h3>
+      <details><summary>What kind of solutions are we expected to build?</summary><p>Participants are strongly recommended to create mechatronic system solutions that interact with the physical environment, combining mechanical, electronic and software elements.</p></details>
+      <details><summary>Can we submit a purely software, app, or website-based solution?</summary><p>Purely app, website, or AI-only solutions are not recommended and will be marked down on innovation. Your final project must involve a physical, high-fidelity prototype that can be demonstrated. Virtual Reality (VR) projects are allowed only if they include a physical interaction component, like custom controllers or sensors.</p></details>
+      <details><summary>What is the Preliminary Design Review?</summary><p>A 1&ndash;3 minute video submitted as a YouTube link by 30 Aug, covering your problem, user research, lo-fi prototype and rationale. It's weighted 40% design, 40% engineering, 20% business, and decides which 16 teams advance.</p></details>
+
+      <h3 class="faq-cat">Commitment &amp; Workshops</h3>
+      <details><summary>Are the workshops mandatory?</summary><p>Yes. There are several compulsory workshops (Design Thinking on 15 Aug, Innovation Mindset on 19 Aug, and the Business Pitch workshop on 7 Oct) that require attendance. Additionally, during recess week, each team must attend at least two technical workshops under Prof Tang Kuok Zea.</p></details>
+      <details><summary>What resources do we get if we make it to the Semi-Finals?</summary><p>The 16 semi-finalist teams receive incredible perks, including an industrial mentor check-in, consideration for internship opportunities, a recommendation for the NUS Overseas Colleges (NOC) programme, and a S$1,000 prototyping budget if you enrol in specific CDE modules (CDE3301/CDE4301) &mdash; S$800 for non-iDP students.</p></details>
+
+      <h3 class="faq-cat">Timeline &amp; Judging</h3>
+      <details><summary>How does the elimination process work?</summary><p>The competition begins with up to 60 teams.</p><ol><li>Preliminary Design Review (PDR): teams submit a 1&ndash;3 minute video of their lo-fi prototype. Judges select the top 16 teams.</li><li>Semi-Finals (15 Oct): a science-booth style exhibition where 6 judges narrow the pool from 16 down to 6 teams.</li><li>Final Pitch (15 Oct): the final 6 teams deliver a formal 10-minute business pitch to a panel of 3 judges.</li></ol></details>
+      <details><summary>How does judging work at the finals?</summary><ul><li>Innovativeness of the solution &mdash; 20%</li><li>Market potential &mdash; 20%</li><li>Economic and financial model &mdash; 20%</li><li>Team strength &mdash; 20%</li><li>Presentation &mdash; 20%</li></ul><p>The format is a 5-minute pitch followed by 5 minutes of Q&amp;A.</p></details>
+      <details><summary>What are the prizes?</summary><ul><li>1st: S$10,000 NUS Enterprise VIP Grant</li><li>2nd: S$3,000 &middot; 3rd: S$1,000</li><li>Best Exhibition, Most Sustainable and Audience Choice: S$500 in vouchers</li><li>Houses &amp; Halls prize: S$500</li><li>Top 3: incubation opportunity at The Hangar by NUS Enterprise</li></ul></details>
+      <details><summary>Where is each event held?</summary><ul><li>Launch Day and workshops: LT7A, Block EA</li><li>Prototyping: Innovation &amp; Design Hub (EA) and Electronics Studio (E2A)</li><li>Semi-finals and finals: Block EA (exact venue to be confirmed)</li></ul><p>All on NUS Kent Ridge campus. See the map above.</p></details>
+      <details><summary>Is food provided?</summary><p>Lunch is catered by NUS Enterprise for 300 on Launch Day and 150 on semi-finals and finals day. Audience members can also win prizes in a lucky draw on 15 Oct.</p></details>
+    </div>
+  </div>
+</section>
+
+<section id="partners" style="padding:72px 0">
+  <div class="wrap">
+    <p class="eyebrow rv"><span class="sheetno">08</span> ORGANISED + SUPPORTED BY</p>
+    <div class="logo-row rv">
+      <div class="logo-slot"><!-- <img src="logos/idp.png" alt="iDP"> --><span>iDP</span></div>
+      <div class="logo-slot"><!-- <img src="logos/cde.png" alt="NUS CDE"> --><span>NUS CDE</span></div>
+      <div class="logo-slot"><!-- <img src="logos/enterprise.png" alt="NUS Enterprise"> --><span>NUS ENTERPRISE</span></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-left rv">
+        <p class="fl-title">IDEATE 2026 &middot; CDE INNOVATION CHALLENGE</p>
+        <p>Organised by the Innovation &amp; Design Programme<br>
+        Student Committee, NUS College of Design and Engineering<br>
+        <a href="mailto:idp.studentclub@u.nus.edu">idp.studentclub@u.nus.edu</a><br><a href="https://www.instagram.com/nusidp" target="_blank" rel="noopener">Instagram</a> &middot; <a href="https://t.me/iDP_Announcements" target="_blank" rel="noopener">Telegram</a> &middot; <a href="https://sg.linkedin.com/school/nus-idp/" target="_blank" rel="noopener">LinkedIn</a></p>
+      </div>
+      <table class="tblock rv" aria-hidden="true">
+        <tr><td>PROJECT: IDEATE 2026</td><td>DRAWN BY: iDPSC</td></tr>
+        <tr><td>SCALE: 1 IDEA = 1 BUILD</td><td>SHEET 1 OF 1 &middot; REV A</td></tr>
+      </table>
+    </div>
+    <p class="legal">&copy; National University of Singapore. All rights reserved.</p>
+  </div>
+</footer>
+
+<script>
+/* =========================================================
+   CONFIG — every date in one place. Edit here only.
+   ========================================================= */
+const CONFIG = {
+  launch:      new Date('2026-08-15T09:00:00+08:00'),
+  signupClose: new Date('2026-08-14T23:59:59+08:00'),
+  finals:      new Date('2026-10-15T09:00:00+08:00'),
+  awards:      new Date('2026-10-21T09:00:00+08:00')
+};
+
+/* ---------- countdown (two-stage) ---------- */
+const el = {
+  d: document.getElementById('cd-d'), h: document.getElementById('cd-h'),
+  m: document.getElementById('cd-m'), s: document.getElementById('cd-s'),
+  label: document.getElementById('countLabel')
+};
+function tick(){
+  const now = new Date();
+  let target, label;
+  if (now < CONFIG.launch)      { target = CONFIG.launch; label = 'Countdown to launch day'; }
+  else if (now < CONFIG.finals) { target = CONFIG.finals; label = 'Countdown to semi-finals + finals'; }
+  else if (now < CONFIG.awards) { target = CONFIG.awards; label = 'Countdown to the award ceremony'; }
+  else { el.label.textContent = 'See you at IDEATE 2027'; ['d','h','m','s'].forEach(k => el[k].textContent = '00'); return; }
+  el.label.textContent = label;
+  const diff = target - now;
+  const dd = Math.floor(diff / 864e5);
+  const hh = Math.floor(diff % 864e5 / 36e5);
+  const mm = Math.floor(diff % 36e5 / 6e4);
+  const ss = Math.floor(diff % 6e4 / 1e3);
+  el.d.textContent = String(dd).padStart(2,'0');
+  el.h.textContent = String(hh).padStart(2,'0');
+  el.m.textContent = String(mm).padStart(2,'0');
+  el.s.textContent = String(ss).padStart(2,'0');
+}
+tick();
+setInterval(tick, 1000);
+
+/* ---------- warped wireframe grid ---------- */
+(function(){
+  const g = document.getElementById('warpGrid');
+  const W = 1440, H = 900, ns = 'http://www.w3.org/2000/svg';
+  const warp = (x, y) => {
+    const dx = x - W * 0.5, dy = y - H * 0.42;
+    const r = Math.sqrt(dx*dx + dy*dy);
+    const k = 90 * Math.exp(-r / 520);
+    return [x + Math.sin(y / 130) * 26 + dx / (r + 1) * k,
+            y + Math.cos(x / 150) * 22 + dy / (r + 1) * k];
+  };
+  let d = '';
+  for (let y = -60; y <= H + 60; y += 56){
+    d += 'M';
+    for (let x = -60; x <= W + 60; x += 40){
+      const [px, py] = warp(x, y);
+      d += ` ${px.toFixed(1)} ${py.toFixed(1)}` + (x < W + 20 ? ' L' : '');
+    }
+  }
+  for (let x = -60; x <= W + 60; x += 56){
+    d += ' M';
+    for (let y = -60; y <= H + 60; y += 40){
+      const [px, py] = warp(x, y);
+      d += ` ${px.toFixed(1)} ${py.toFixed(1)}` + (y < H + 20 ? ' L' : '');
+    }
+  }
+  const p = document.createElementNS(ns, 'path');
+  p.setAttribute('d', d);
+  g.appendChild(p);
+})();
+
+/* ---------- reveal on scroll ---------- */
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+}, { threshold: 0.12 });
+document.querySelectorAll('.rv').forEach(n => io.observe(n));
+
+/* ---------- mobile nav ---------- */
+const toggle = document.getElementById('navToggle');
+const links = document.getElementById('navLinks');
+toggle.addEventListener('click', () => {
+  const open = links.classList.toggle('open');
+  toggle.setAttribute('aria-expanded', open);
+});
+links.addEventListener('click', e => {
+  if (e.target.tagName === 'A'){ links.classList.remove('open'); toggle.setAttribute('aria-expanded','false'); }
+});
+
+/* ---------- FAQ: close others when one opens ---------- */
+document.querySelectorAll('.faq details').forEach(d => {
+  d.addEventListener('toggle', () => {
+    if (d.open) document.querySelectorAll('.faq details[open]').forEach(o => { if (o !== d) o.open = false; });
+  });
+});
+</script>
+</body>
+</html>
