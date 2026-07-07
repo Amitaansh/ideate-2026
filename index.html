@@ -154,6 +154,10 @@ header{min-height:100svh;display:flex;flex-direction:column;justify-content:cent
 .prize .note{font-family:var(--mono);font-size:11.5px;color:var(--ink-dim);letter-spacing:.05em}
 .stamp{position:absolute;top:14px;right:14px;font-family:var(--mono);font-size:10px;letter-spacing:.12em;border:1px solid var(--yellow);color:var(--yellow);padding:3px 8px;transform:rotate(4deg)}
 .extras{margin-top:20px;display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:18px}
+.cat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px;margin-top:32px}
+.cat-prize{border:1px dashed var(--line);padding:22px 14px;text-align:center}
+.cat-prize .cat-name{font-family:var(--mono);font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-dim)}
+.cat-prize .cat-amt{font-family:var(--disp);font-size:24px;color:var(--yellow);margin-top:10px}
 .extra{border:1px dashed var(--line);padding:22px 24px}
 .extra h4{font-family:var(--mono);font-size:13px;letter-spacing:.1em;margin-bottom:8px;text-transform:uppercase}
 .extra p{font-size:14px;color:var(--ink-dim)}
@@ -220,7 +224,7 @@ header{min-height:100svh;display:flex;flex-direction:column;justify-content:cent
 /* ---------- partners / footer ---------- */
 .logo-row{display:flex;flex-wrap:wrap;gap:18px;align-items:stretch;margin-top:12px}
 .logo-slot{border:1px solid var(--line);min-width:190px;min-height:96px;flex:1;display:flex;align-items:center;justify-content:center;padding:18px 22px}
-.logo-slot span{font-family:var(--disp);font-size:clamp(18px,2.2vw,24px);letter-spacing:.04em}
+.logo-slot span{font-family:var(--disp);font-size:clamp(13px,1.6vw,20px);letter-spacing:.03em;line-height:1.2;text-align:center}
 .logo-slot img{max-height:56px;width:auto}
 .logo-slot.sup span{color:var(--ink-dim);font-family:var(--body);font-weight:600;font-size:clamp(16px,2vw,21px)}
 footer{border-top:1px solid var(--line);padding:56px 0 40px}
@@ -331,7 +335,7 @@ section::after{content:"+";position:absolute;top:20px;right:28px;font-family:var
     <div class="hero-cta" id="register">
       <a class="btn btn-y" href="https://forms.office.com/r/YuJ9TF7YBT" target="_blank" rel="noopener">Register your team</a>
       <a class="btn" href="#timeline">See the build sequence</a>
-      <span class="close-tag">&#9888; SIGNUPS CLOSE 14 AUG</span>
+      <span class="close-tag">&#9888; SIGNUPS CLOSE 9 AUG</span>
     </div>
   </div>
 </header>
@@ -346,8 +350,7 @@ section::after{content:"+";position:absolute;top:20px;right:28px;font-family:var
     <div class="about-grid">
       <div class="rv">
         <h2>Where ideas <span class="accent-y">take form</span></h2>
-        <p>IDEATE is the CDE Innovation Challenge: a 10-week makeathon that invites NUS students from every discipline to identify a real-world problem and build a working prototype.</p>
-        <p>The name carries our standing theme, <strong>IDEAs To Everything</strong>: everything begins from an idea, and an idea holds the power to become everything. This year's edition takes that to the Innovation Makeathon.</p>
+        <p>IDEATE is part of the CDE Innovation Challenge: a 10-week makeathon that invites NUS students from every discipline to identify a real-world problem and build a working prototype. This year's edition takes that from blueprint to build.</p>
         <p>Participants will form a team, pass a preliminary design review, and prototype through recess week with industry mentors. Teams that make the final six after exhibiting at the semi-finals will then pitch for a share of the prize pool on the finals stage.</p>
       </div>
       <div class="rv">
@@ -389,10 +392,10 @@ section::after{content:"+";position:absolute;top:20px;right:28px;font-family:var
       <div class="tl-item mark-y rv"><span class="tl-date">30 Aug &middot; Sun</span><h4>Preliminary Design Review submission</h4><p>A 1&ndash;3 minute video: your problem statement, lo-fi prototype and rationale. Weighted 40% design, 40% engineering, 20% business.</p></div>
       <div class="tl-item rv"><span class="tl-date">2 Sep &middot; Wed</span><h4>Top 16 teams announced</h4><p>Judges shortlist 16 of the 60 teams to advance to the prototyping stage.</p></div>
       <div class="tl-item rv"><span class="tl-date">Sep</span><h4>Hi-fi prototyping</h4><p>Build your working prototype. Book sessions with student mentors, virtually or in person, whenever you need them.</p></div>
-      <div class="tl-item rv"><span class="tl-date">20&ndash;28 Sep</span><span class="tl-tag">MIN. 2 PER TEAM</span><h4>Technical workshops</h4><p>Recess-week skills sessions conducted by Prof Tang Kuok Zea: machining, PCB design, 3D printing, CAD, soldering and more. <a href="#workshops" style="color:var(--yellow)">See the full list</a>.</p></div>
+      <div class="tl-item rv"><span class="tl-date">19&ndash;27 Sep</span><span class="tl-tag">MIN. 2 PER TEAM</span><h4>Technical workshops</h4><p>Recess-week skills sessions organised by the Engineering Design and Innovation Centre: machining, PCB design, 3D printing, CAD, soldering and more. <a href="#workshops" style="color:var(--yellow)">See the full list</a>.</p></div>
       <div class="tl-item rv"><span class="tl-date">28 Sep &ndash; 4 Oct</span><span class="tl-tag">COMPULSORY</span><h4>Industrial mentor check-in</h4><p>Send a 100-word project summary, then meet your industrial mentor for a consultation on feasibility, rigour and showcase readiness.</p></div>
-      <div class="tl-item rv"><span class="tl-date">7 Oct &middot; Wed</span><span class="tl-tag">COMPULSORY</span><h4>Business Pitch Workshop</h4><p>Pitch structure, storytelling and demo prep with Prof Khoo Eng Tat, ahead of the finals.</p></div>
-      <div class="tl-item mark-r rv"><span class="tl-date">15 Oct &middot; Wed</span><h4>Semi-finals exhibition + Finals pitch</h4><p>Sixteen teams exhibit science-booth style; six judges pick the final six. Those six deliver a 5-minute business pitch plus Q&amp;A to a panel of three. Audience members also stand to win prizes in a lucky draw.</p></div>
+      <div class="tl-item rv"><span class="tl-date">7 Oct &middot; Wed</span><span class="tl-tag">COMPULSORY</span><h4>Business Pitch Workshop</h4><p>Pitch structure, storytelling and demo prep ahead of the finals.</p></div>
+      <div class="tl-item mark-r rv"><span class="tl-date">15 Oct &middot; Thu</span><h4>Semi-finals exhibition + Finals pitch</h4><p>Sixteen teams exhibit science-booth style; six judges pick the final six. Those six deliver a 5-minute business pitch plus Q&amp;A to a panel of three. Audience members also stand to win prizes in a lucky draw.</p></div>
       <div class="tl-item mark-r rv"><span class="tl-date">21 Oct</span><h4>Award ceremony at CDE Innovation Day</h4><p>Top three teams receive their prizes on the Innovation Day stage.</p></div>
     </div>
 
@@ -415,15 +418,16 @@ section::after{content:"+";position:absolute;top:20px;right:28px;font-family:var
     <h2 class="rv">Win more than <span class="accent-y">prize money</span></h2>
     <div class="podium rv">
       <div class="prize p2"><div class="ghost">2</div><div class="place">2ND PLACE</div><div class="amt">S$3,000</div><div class="amt-line">|&larr; CASH PRIZE &rarr;|</div></div>
-      <div class="prize p1"><span class="stamp">GRAND PRIZE</span><div class="ghost">1</div><div class="place">1ST PLACE</div><div class="amt">S$10,000</div><div class="amt-line">|&larr; NUS ENTERPRISE VIP GRANT &rarr;|</div><div class="hatch-bar" aria-hidden="true"></div></div>
+      <div class="prize p1"><span class="stamp">GRAND PRIZE</span><div class="ghost">1</div><div class="place">1ST PLACE</div><div class="amt">S$10,000</div><div class="amt-line">|&larr; BUILD &amp; LAUNCH GRANT &rarr;|</div><div class="hatch-bar" aria-hidden="true"></div></div>
       <div class="prize p3"><div class="ghost">3</div><div class="place">3RD PLACE</div><div class="amt">S$1,000</div><div class="amt-line">|&larr; CASH PRIZE &rarr;|</div></div>
     </div>
-    <div class="extras">
-      <div class="extra rv"><h4>Special categories <span class="badge">S$500</span></h4><p>Best Exhibition, Most Sustainable and Audience Choice, awarded in vouchers on finals day.</p></div>
-      <div class="extra rv"><h4>Houses &amp; Halls prize <span class="badge">S$500</span></h4><p>Awarded to the top-performing team representing an NUS house or hall.</p></div>
-      <div class="extra rv"><h4>Incubation at The Hangar</h4><p>Top 3 teams get the opportunity to incubate their solution with NUS Enterprise at The Hangar.</p></div>
-      <div class="extra rv"><h4>For all 16 semi-finalists</h4><p>A recommendation for NOC applications, internship opportunities, and a prototyping budget of S$1,000 (S$800 for non-iDP students) for those who enrol in CDE3301 or CDE4301.</p></div>
+    <div class="cat-grid">
+      <div class="cat-prize rv"><div class="cat-name">Best Exhibition</div><div class="cat-amt">S$500</div></div>
+      <div class="cat-prize rv"><div class="cat-name">Most Sustainable</div><div class="cat-amt">S$500</div></div>
+      <div class="cat-prize rv"><div class="cat-name">Audience Choice</div><div class="cat-amt">S$500</div></div>
+      <div class="cat-prize rv"><div class="cat-name">Halls &amp; Residences</div><div class="cat-amt">S$500</div></div>
     </div>
+    <div class="extra rv" style="margin-top:18px"><h4>For all 16 semi-finalists</h4><p>Prototyping budget of S$1,000 for those who enrol in CDE3301 or CDE4301. Students who demonstrate a high level of performance will also be recommended for NUS Overseas Colleges (NOC).</p></div>
   </div>
 </section>
 
@@ -435,10 +439,10 @@ section::after{content:"+";position:absolute;top:20px;right:28px;font-family:var
       <div>
         <div class="ws-card rv"><div class="top"><h4>Introduction to Design Thinking</h4><span class="when">15 AUG</span></div><p>Empathise, define, ideate, prototype, test. Introduction to sustainable design principles and the jobs-to-be-done framework.</p><p style="margin-top:10px"><span class="req">COMPULSORY</span> <span class="opt">LT7A, BLK EA</span></p></div>
         <div class="ws-card rv"><div class="top"><h4>Innovation Mindset Workshop</h4><span class="when">19 AUG</span></div><p>A lecture on the innovation mindset by Prof Khoo Eng Tat, followed by a founder panel and hands-on problem-solving activities with NUSOne and NUS Enterprise.</p><p style="margin-top:10px"><span class="req">COMPULSORY</span> <span class="opt">VENUE TBC</span></p></div>
-        <div class="ws-card rv"><div class="top"><h4>Business Pitch Workshop</h4><span class="when">7 OCT</span></div><p>How to structure and deliver your finals pitch, with Prof Khoo Eng Tat.</p><p style="margin-top:10px"><span class="req">COMPULSORY</span> <span class="opt">VENUE TBC</span></p></div>
+        <div class="ws-card rv"><div class="top"><h4>Business Pitch Workshop</h4><span class="when">7 OCT</span></div><p>How to structure and deliver your finals pitch.</p><p style="margin-top:10px"><span class="req">COMPULSORY</span> <span class="opt">VENUE TBC</span></p></div>
         <div class="ws-card rv">
-          <div class="top"><h4>Technical workshops</h4><span class="when">20&ndash;28 SEP</span></div>
-          <p>Hands-on workshops conducted by Prof Tang Kuok Zea. Every team must attend at least two. Sign-up priority for IDEATE participants.</p>
+          <div class="top"><h4>Technical workshops</h4><span class="when">19&ndash;27 SEP</span></div>
+          <p>Hands-on workshops organised by the Engineering Design and Innovation Centre. Every team must attend at least two. Sign-up priority for IDEATE participants.</p>
           <div class="tech-grid">
             <div class="tech"><h5>Lathe machining</h5><p>Turn shafts, pins and cylindrical parts on the workshop lathe.</p></div>
             <div class="tech"><h5>Mill machining</h5><p>Cut slots, faces and holes with precision milling.</p></div>
@@ -532,13 +536,13 @@ section::after{content:"+";position:absolute;top:20px;right:28px;font-family:var
       <details><summary>What is the Preliminary Design Review?</summary><p>A 1&ndash;3 minute video submitted as a YouTube link by 30 Aug, covering your problem, user research, lo-fi prototype and rationale. It's weighted 40% design, 40% engineering, 20% business, and decides which 16 teams advance.</p></details>
 
       <h3 class="faq-cat">Commitment &amp; Workshops</h3>
-      <details><summary>Are the workshops mandatory?</summary><p>Yes. There are several compulsory workshops (Design Thinking on 15 Aug, Innovation Mindset on 19 Aug, and the Business Pitch workshop on 7 Oct) that require attendance. Additionally, during recess week, each team must attend at least two technical workshops under Prof Tang Kuok Zea.</p></details>
+      <details><summary>Are the workshops mandatory?</summary><p>Yes. There are several compulsory workshops (Design Thinking on 15 Aug, Innovation Mindset on 19 Aug, and the Business Pitch workshop on 7 Oct) that require attendance. Additionally, during recess week, each team must attend at least two technical workshops organised by the Engineering Design and Innovation Centre.</p></details>
       <details><summary>What resources do we get if we make it to the Semi-Finals?</summary><p>The 16 semi-finalist teams receive incredible perks, including an industrial mentor check-in, consideration for internship opportunities, a recommendation for the NUS Overseas Colleges (NOC) programme, and a S$1,000 prototyping budget if you enrol in specific CDE modules (CDE3301/CDE4301) &mdash; S$800 for non-iDP students.</p></details>
 
       <h3 class="faq-cat">Timeline &amp; Judging</h3>
       <details><summary>How does the elimination process work?</summary><p>The competition begins with up to 60 teams.</p><ol><li>Preliminary Design Review (PDR): teams submit a 1&ndash;3 minute video of their lo-fi prototype. Judges select the top 16 teams.</li><li>Semi-Finals (15 Oct): a science-booth style exhibition where 6 judges narrow the pool from 16 down to 6 teams.</li><li>Final Pitch (15 Oct): the final 6 teams deliver a formal 10-minute business pitch to a panel of 3 judges.</li></ol></details>
       <details><summary>How does judging work at the finals?</summary><ul><li>Innovativeness of the solution &mdash; 20%</li><li>Market potential &mdash; 20%</li><li>Economic and financial model &mdash; 20%</li><li>Team strength &mdash; 20%</li><li>Presentation &mdash; 20%</li></ul><p>The format is a 5-minute pitch followed by 5 minutes of Q&amp;A.</p></details>
-      <details><summary>What are the prizes?</summary><ul><li>1st: S$10,000 NUS Enterprise VIP Grant</li><li>2nd: S$3,000 &middot; 3rd: S$1,000</li><li>Best Exhibition, Most Sustainable and Audience Choice: S$500 in vouchers</li><li>Houses &amp; Halls prize: S$500</li><li>Top 3: incubation opportunity at The Hangar by NUS Enterprise</li></ul></details>
+      <details><summary>What are the prizes?</summary><ul><li>1st: S$10,000 Build &amp; Launch Grant</li><li>2nd: S$3,000 &middot; 3rd: S$1,000</li><li>Best Exhibition, Most Sustainable, Audience Choice and Halls &amp; Residences: S$500 each</li><li>All 16 semi-finalists: S$1,000 prototyping budget (CDE3301/CDE4301) and an NOC recommendation for top performers</li></ul></details>
       <details><summary>Where is each event held?</summary><ul><li>Launch Day and workshops: LT7A, Block EA</li><li>Prototyping: Innovation &amp; Design Hub (EA) and Electronics Studio (E2A)</li><li>Semi-finals and finals: Block EA (exact venue to be confirmed)</li></ul><p>All on NUS Kent Ridge campus. See the map above.</p></details>
       <details><summary>Is food provided?</summary><p>Lunch is catered by NUS Enterprise for 300 on Launch Day and 150 on semi-finals and finals day. Audience members can also win prizes in a lucky draw on 15 Oct.</p></details>
     </div>
@@ -551,7 +555,7 @@ section::after{content:"+";position:absolute;top:20px;right:28px;font-family:var
     <div class="logo-row rv">
       <div class="logo-slot"><!-- <img src="logos/idp.png" alt="iDP"> --><span>iDP</span></div>
       <div class="logo-slot"><!-- <img src="logos/cde.png" alt="NUS CDE"> --><span>NUS CDE</span></div>
-      <div class="logo-slot"><!-- <img src="logos/dyson.png" alt="Dyson"> --><span>DYSON</span></div>
+      <div class="logo-slot"><!-- <img src="logos/dyson.png" alt="James Dyson Foundation"> --><span>JAMES DYSON FOUNDATION</span></div>
     </div>
   </div>
 </section>
