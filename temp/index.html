@@ -4,9 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>IDEATE 2026 · Coming Soon</title>
-<meta name="description" content="IDEATE 2026 · CDE Innovation Challenge. Full details are being refined — the site returns shortly. Registration stays open.">
-<meta property="og:title" content="IDEATE 2026 · Coming Soon">
-<meta property="og:description" content="Something's building. Full details return shortly — registration stays open in the meantime.">
+<meta name="description" content="IDEATE CDE Innovation Challenge 2026. A 10-week makeathon for all NUS undergraduates.">
+<meta property="og:title" content="IDEATE 2026 · Innovation Makeathon">
+<meta property="og:description" content="A 10-week makeathon open to all NUS undergraduates. Identify a real-world problem, build a working prototype, pitch it.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
@@ -26,18 +26,17 @@
   --body:'Archivo',sans-serif;
 }
 *{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{background:var(--blue);color:var(--white);font-family:var(--body);font-size:16px;line-height:1.65;overflow-x:hidden;min-height:100svh;display:flex;flex-direction:column;
+html{scroll-behavior:smooth;scroll-padding-top:72px}
+body{background:var(--blue);color:var(--white);font-family:var(--body);font-size:16px;line-height:1.65;overflow-x:hidden;
   background-image:linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px);
   background-size:56px 56px}
 ::selection{background:var(--yellow);color:var(--blue)}
 a{color:inherit}
-.wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+img{max-width:100%;display:block}
 
-/* reveal on scroll (footer only) */
-.rv{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s ease}
-.rv.in{opacity:1;transform:none}
-@media (prefers-reduced-motion: reduce){.rv{opacity:1;transform:none;transition:none}html{scroll-behavior:auto}}
+/* ---------- utilities ---------- */
+.wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+.mono{font-family:var(--mono)}
 
 /* ---------- nav ---------- */
 nav{position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(33,48,214,.9);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
@@ -52,52 +51,61 @@ nav{position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(33,48,214,.9)
 .btn-y{background:var(--yellow);border-color:var(--yellow);color:var(--blue)}
 .btn-y:hover{box-shadow:3px 3px 0 rgba(245,200,66,.4)}
 .btn-sm{padding:8px 18px;font-size:12px}
+.btn-g-outline{border-color:var(--green);color:var(--green)}
+.btn-g-outline:hover{box-shadow:3px 3px 0 rgba(43,223,112,.3)}
 
 /* ---------- hero ---------- */
-header{flex:1;min-height:100svh;display:flex;flex-direction:column;justify-content:center;position:relative;padding:120px 0 64px;overflow:hidden}
+header{min-height:100svh;display:flex;flex-direction:column;justify-content:center;position:relative;padding:72px 0 24px;overflow:hidden}
 .grid-bg{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
 .hero-in{position:relative;text-align:center}
-.kicker{font-family:var(--mono);font-size:clamp(13px,1.8vw,17px);letter-spacing:.3em;text-transform:uppercase;margin-bottom:18px}
+.kicker{font-family:var(--mono);font-size:clamp(12px,1.8vw,15px);letter-spacing:.3em;text-transform:uppercase;margin-bottom:clamp(6px, 1.5vh, 14px)}
 .kicker b{color:var(--yellow);font-weight:700}
-.big{font-family:var(--disp);font-size:clamp(64px,15vw,190px);line-height:.92;letter-spacing:.005em;user-select:none}
+.big{font-family:var(--disp);font-size:clamp(48px,11vw,150px);line-height:.92;letter-spacing:.005em;user-select:none}
 .big span{display:inline-block;transition:transform .25s ease}
 .big span:hover{transform:translateY(-8px) rotate(-2deg)}
 .big .c1{color:var(--white)}.big .c2{color:var(--yellow)}.big .c3{color:var(--green)}.big .c4{color:var(--red)}
-.hero-dates{margin:26px 0 8px}
-.dimension{font-family:var(--mono);display:inline-flex;align-items:center;gap:10px;font-size:clamp(13px,1.6vw,15px);letter-spacing:.08em}
-.dimension::before{content:"|\2190";letter-spacing:0}
-.dimension::after{content:"\2192|";letter-spacing:0}
-.hero-sub{font-family:var(--mono);font-size:13px;color:var(--ink-dim);letter-spacing:.12em}
-.doodle{position:absolute;font-family:var(--mono);font-size:12px;color:var(--line);pointer-events:none}
 
-/* ---------- coming soon block ---------- */
-.soon-tag{display:inline-block;margin-top:44px;font-family:var(--mono);font-size:13px;font-weight:700;letter-spacing:.14em;border:1px solid var(--yellow);background:repeating-linear-gradient(45deg,rgba(245,200,66,.22),rgba(245,200,66,.22) 6px,rgba(245,200,66,.1) 6px,rgba(245,200,66,.1) 12px);color:var(--yellow);padding:10px 20px}
-.soon-sub{font-family:var(--mono);font-size:13px;color:var(--ink-dim);letter-spacing:.04em;max-width:520px;margin:18px auto 0;line-height:1.7}
-
-/* ---------- countdown ---------- */
-.count{display:flex;justify-content:center;gap:12px;margin:36px 0 10px;flex-wrap:wrap}
-.count .cell{border:1px solid var(--line);background:rgba(255,255,255,.06);min-width:88px;padding:14px 10px 10px}
-.count .num{font-family:var(--disp);font-size:clamp(30px,5vw,44px);line-height:1}
-.count .lab{font-family:var(--mono);font-size:11px;letter-spacing:.2em;color:var(--ink-dim);margin-top:6px}
-.count-label{font-family:var(--mono);font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:var(--ink-dim);margin-bottom:14px}
-
-/* ---------- cta ---------- */
-.hero-cta{display:flex;justify-content:center;align-items:center;gap:14px;margin-top:34px;flex-wrap:wrap}
-.open-tag{font-family:var(--mono);font-size:12px;letter-spacing:.08em;border:1px solid var(--green);color:var(--green);padding:10px 16px}
-
-/* ---------- acronym strip ---------- */
-.acro{font-family:var(--mono);font-size:clamp(9.5px,1.35vw,13px);letter-spacing:.16em;color:var(--ink-dim);margin-top:16px;display:flex;justify-content:center;flex-wrap:wrap;gap:6px 14px}
+.acro{font-family:var(--mono);font-size:clamp(9.5px,1.2vw,12px);letter-spacing:.16em;color:var(--ink-dim);margin-top:clamp(8px, 1.5vh, 12px);display:flex;justify-content:center;flex-wrap:wrap;gap:6px 14px}
 .acro b{font-weight:700}
 .acro .aw{color:var(--white)}.acro .ay{color:var(--yellow)}.acro .ag{color:var(--green)}.acro .ar{color:var(--red)}
 
+.hero-dates{margin:clamp(10px, 2.5vh, 22px) 0 4px}
+.hero-sub{font-family:var(--mono);font-size:clamp(11px, 1.2vw, 13px);color:var(--ink-dim);letter-spacing:.12em}
+.dimension{font-family:var(--mono);display:inline-flex;align-items:center;gap:10px;font-size:clamp(12px,1.5vw,14px);letter-spacing:.08em}
+.dimension::before{content:"|\2190";letter-spacing:0}
+.dimension::after{content:"\2192|";letter-spacing:0}
+
+/* ---------- coming soon modifications ---------- */
+.warning-box{
+  border:1px solid var(--yellow);
+  display:inline-block;
+  font-family:var(--mono);
+  color:var(--yellow);
+  letter-spacing:.1em;
+  font-size:clamp(11px, 1.2vw, 13px);
+  font-weight:700;
+  padding:10px 24px;
+  margin:clamp(12px, 3vh, 28px) 0 clamp(8px, 2vh, 16px);
+  background:repeating-linear-gradient(45deg, rgba(245,200,66,.12), rgba(245,200,66,.12) 5px, transparent 5px, transparent 10px);
+}
+
+/* ---------- countdown & ctas ---------- */
+.count{display:flex;justify-content:center;gap:12px;margin:clamp(8px, 2vh, 12px) 0 clamp(6px, 1.5vh, 10px);flex-wrap:wrap}
+.count .cell{border:1px solid var(--line);background:rgba(255,255,255,.06);min-width:76px;padding:12px 8px 8px}
+.count .num{font-family:var(--disp);font-size:clamp(28px,4vw,40px);line-height:1}
+.count .lab{font-family:var(--mono);font-size:10.5px;letter-spacing:.2em;color:var(--ink-dim);margin-top:6px}
+.count-label{font-family:var(--mono);font-size:11.5px;letter-spacing:.24em;text-transform:uppercase;color:var(--ink-dim)}
+.hero-cta{display:flex;justify-content:center;align-items:center;gap:14px;margin-top:clamp(12px, 3vh, 24px);flex-wrap:wrap}
+.doodle{position:absolute;font-family:var(--mono);font-size:12px;color:var(--line);pointer-events:none}
+
 /* ---------- footer ---------- */
-footer{border-top:1px dashed var(--line-soft);padding:48px 0 36px}
+footer{border-top:1px solid var(--line);padding:56px 0 40px}
 .foot-grid{display:flex;justify-content:space-between;gap:36px;flex-wrap:wrap;align-items:flex-end}
 .foot-left p{font-family:var(--mono);font-size:12.5px;color:var(--ink-dim);letter-spacing:.05em;line-height:2}
 .foot-left .fl-title{color:var(--white);font-weight:700;letter-spacing:.14em}
 .tblock{border:1px solid var(--line);border-collapse:collapse;font-family:var(--mono);font-size:10.5px;color:var(--ink-dim)}
 .tblock td{border:1px solid var(--line);padding:6px 14px;letter-spacing:.1em}
-.legal{font-family:var(--mono);font-size:11px;color:rgba(255,255,255,.45);margin-top:32px;letter-spacing:.06em}
+.legal{font-family:var(--mono);font-size:11px;color:rgba(255,255,255,.45);margin-top:36px;letter-spacing:.06em}
 </style>
 </head>
 <body>
@@ -105,7 +113,9 @@ footer{border-top:1px dashed var(--line-soft);padding:48px 0 36px}
 <nav>
   <div class="nav-in">
     <a class="logo" href="#top"><span class="l1">ID</span><span class="l2">E</span><span class="l3">A</span><span class="l4">T</span><span class="l1">E</span><span class="yr">2026</span></a>
-    <a class="btn btn-y btn-sm" href="https://forms.office.com/r/YuJ9TF7YBT" target="_blank" rel="noopener">Register</a>
+    <div>
+      <a class="btn btn-y btn-sm nav-register" href="https://forms.office.com/r/YuJ9TF7YBT" target="_blank" rel="noopener">Register now</a>
+    </div>
   </div>
 </nav>
 
@@ -130,16 +140,18 @@ footer{border-top:1px dashed var(--line-soft);padding:48px 0 36px}
     <h1 class="big" aria-label="IDEATE">
       <span class="c1">I</span><span class="c2">D</span><span class="c1">E</span><span class="c1">A</span><span class="c3">T</span><span class="c4">E</span>
     </h1>
-    <p class="big" style="font-size:clamp(28px,5vw,56px);margin-top:2px" aria-hidden="true"><span class="c1">2</span><span class="c3">0</span><span class="c4">2</span><span class="c2">6</span></p>
+    <p class="big" style="font-size:clamp(24px,5vw,48px);margin-top:2px" aria-hidden="true"><span class="c1">2</span><span class="c3">0</span><span class="c4">2</span><span class="c2">6</span></p>
+    
     <p class="acro"><span><b class="aw">I</b>NNOVATION</span><span><b class="ay">D</b>ESIGN</span><span><b class="aw">E</b>XECUTION</span><span><b class="aw">A</b>DAPTABILITY</span><span><b class="ag">T</b>ECHNOLOGY</span><span><b class="ar">E</b>NTREPRENEURSHIP</span></p>
 
     <div class="hero-dates"><span class="dimension">&nbsp;15 AUG &mdash; 21 OCT 2026&nbsp;</span></div>
     <p class="hero-sub">CDE INNOVATION CHALLENGE &middot; 10-WEEK MAKEATHON &middot; OPEN TO ALL NUS UNDERGRADUATES</p>
 
-    <div class="soon-tag">&#9888; SOMETHING'S BUILDING</div>
-    <p class="soon-sub">We're refining the details before doors open. The full site returns shortly &mdash; registration stays open in the meantime.</p>
+    <div class="warning-box">
+      &#9888; MORE INFO COMING SOON 
+    </div>
 
-    <div style="margin-top:40px">
+    <div>
       <p class="count-label" id="countLabel">Countdown to launch day</p>
       <div class="count" id="countdown" role="timer" aria-live="off">
         <div class="cell"><div class="num" id="cd-d">--</div><div class="lab">DAYS</div></div>
@@ -149,9 +161,9 @@ footer{border-top:1px dashed var(--line-soft);padding:48px 0 36px}
       </div>
     </div>
 
-    <div class="hero-cta">
+    <div class="hero-cta" id="register">
       <a class="btn btn-y" href="https://forms.office.com/r/YuJ9TF7YBT" target="_blank" rel="noopener">Register your team</a>
-      <span class="open-tag">&#10003; REGISTRATION OPEN</span>
+      <span class="btn btn-g-outline" style="pointer-events: none;">&#10003; REGISTRATION OPEN</span>
     </div>
   </div>
 </header>
@@ -159,15 +171,15 @@ footer{border-top:1px dashed var(--line-soft);padding:48px 0 36px}
 <footer>
   <div class="wrap">
     <div class="foot-grid">
-      <div class="foot-left rv">
+      <div class="foot-left">
         <p class="fl-title">IDEATE 2026 &middot; CDE INNOVATION CHALLENGE</p>
         <p>Organised by the Innovation &amp; Design Programme<br>
         Student Committee, NUS College of Design and Engineering<br>
         <a href="mailto:idp.studentclub@u.nus.edu">idp.studentclub@u.nus.edu</a><br><a href="https://www.instagram.com/nusidp" target="_blank" rel="noopener">Instagram</a> &middot; <a href="https://t.me/iDP_Announcements" target="_blank" rel="noopener">Telegram</a> &middot; <a href="https://sg.linkedin.com/school/nus-idp/" target="_blank" rel="noopener">LinkedIn</a></p>
       </div>
-      <table class="tblock rv" aria-hidden="true">
+      <table class="tblock" aria-hidden="true">
         <tr><td>PROJECT: IDEATE 2026</td><td>DRAWN BY: iDPSC</td></tr>
-        <tr><td>STATUS: IN REFINEMENT</td><td>SHEET 1 OF 1 &middot; REV B</td></tr>
+        <tr><td>SCALE: 1 IDEA = 1 BUILD</td><td>SHEET 1 OF 1 &middot; REV A</td></tr>
       </table>
     </div>
     <p class="legal">&copy; National University of Singapore. All rights reserved.</p>
@@ -176,11 +188,16 @@ footer{border-top:1px dashed var(--line-soft);padding:48px 0 36px}
 
 <script>
 /* =========================================================
-   CONFIG — launch date. Edit here only.
+   CONFIG — every date in one place. Edit here only.
    ========================================================= */
-const CONFIG = { launch: new Date('2026-08-15T09:00:00+08:00') };
+const CONFIG = {
+  launch:      new Date('2026-08-15T09:00:00+08:00'),
+  signupClose: new Date('2026-08-14T23:59:59+08:00'),
+  finals:      new Date('2026-10-15T09:00:00+08:00'),
+  awards:      new Date('2026-10-21T09:00:00+08:00')
+};
 
-/* ---------- countdown ---------- */
+/* ---------- countdown (two-stage) ---------- */
 const el = {
   d: document.getElementById('cd-d'), h: document.getElementById('cd-h'),
   m: document.getElementById('cd-m'), s: document.getElementById('cd-s'),
@@ -188,13 +205,13 @@ const el = {
 };
 function tick(){
   const now = new Date();
-  const diff = CONFIG.launch - now;
-  if (diff <= 0){
-    el.label.textContent = "Launch day is here — check back soon";
-    ['d','h','m','s'].forEach(k => el[k].textContent = '00');
-    return;
-  }
-  el.label.textContent = 'Countdown to launch day';
+  let target, label;
+  if (now < CONFIG.launch)      { target = CONFIG.launch; label = 'Countdown to launch day'; }
+  else if (now < CONFIG.finals) { target = CONFIG.finals; label = 'Countdown to semi-finals + finals'; }
+  else if (now < CONFIG.awards) { target = CONFIG.awards; label = 'Countdown to the award ceremony'; }
+  else { el.label.textContent = 'See you at IDEATE 2027'; ['d','h','m','s'].forEach(k => el[k].textContent = '00'); return; }
+  el.label.textContent = label;
+  const diff = target - now;
   const dd = Math.floor(diff / 864e5);
   const hh = Math.floor(diff % 864e5 / 36e5);
   const mm = Math.floor(diff % 36e5 / 6e4);
@@ -237,12 +254,6 @@ setInterval(tick, 1000);
   p.setAttribute('d', d);
   g.appendChild(p);
 })();
-
-/* ---------- reveal on scroll (footer) ---------- */
-const io = new IntersectionObserver(entries => {
-  entries.forEach(e => { if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
-}, { threshold: 0.12 });
-document.querySelectorAll('.rv').forEach(n => io.observe(n));
 </script>
 </body>
 </html>
