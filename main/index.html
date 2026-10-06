@@ -20,13 +20,13 @@
   --red:#E63325;
   --line:rgba(255,255,255,.32);
   --line-soft:rgba(255,255,255,.14);
-  --ink-dim:rgba(255,255,255,.72);
+  --ink-dim:rgba(255,255,255,.2);
   --mono:'Space Mono',monospace;
   --disp:'Archivo Black',sans-serif;
   --body:'Archivo',sans-serif;
 }
 *{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth;scroll-padding-top:72px}
+html{scroll-behavior:smooth;scroll-padding-top:2px}
 body{background:var(--blue);color:var(--white);font-family:var(--body);font-size:16px;line-height:1.65;overflow-x:hidden;
   background-image:linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px);
   background-size:56px 56px}
@@ -52,7 +52,7 @@ h3{font-family:var(--mono);font-size:15px;letter-spacing:.12em;text-transform:up
 .dimension::after{content:"\2192|";letter-spacing:0}
 
 /* reveal on scroll */
-.rv{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s ease}
+.rv{opacity:0;transform:translateY(22px);transition:opacity .s ease,transform .7s ease}
 .rv.in{opacity:1;transform:none}
 @media (prefers-reduced-motion: reduce){
   .rv{opacity:1;transform:none;transition:none}
@@ -439,7 +439,7 @@ section::after{content:"+";position:absolute;top:20px;right:28px;font-family:var
       <div>
         <div class="ws-card rv"><div class="top"><h4>Innovation and Design Workshop</h4><span class="when">15 AUG</span></div><p>Empathise, define, ideate, prototype, test. Introduction to sustainable design principles and the jobs-to-be-done framework.</p><p style="margin-top:10px"><span class="req">COMPULSORY</span> <span class="opt">LT7A, BLK EA</span></p></div>
         <div class="ws-card rv"><div class="top"><h4>Innovation Mindset Workshop</h4><span class="when">19 AUG</span></div><p>A lecture on the innovation mindset by Prof Khoo Eng Tat, followed by a founder panel and hands-on problem-solving activities with NUSOne and NUS Enterprise.</p><p style="margin-top:10px"><span class="req">COMPULSORY</span> <span class="opt">VENUE TBC</span></p></div>
-        <div class="ws-card rv"><div class="top"><h4>Business Pitch Workshop</h4><span class="when">7 OCT</span></div><p>How to structure and deliver your finals pitch.</p><p style="margin-top:10px"><span class="req">COMPULSORY</span> <span class="opt">VENUE TBC</span></p></div>
+        <div class="ws-card rv"><div class="top"><h4>Business Pitch Workshop</h4><span class="when">8 OCT</span></div><p>How to structure and deliver your finals pitch.</p><p style="margin-top:10px"><span class="req">COMPULSORY</span> <span class="opt">VENUE TBC</span></p></div>
         <div class="ws-card rv">
           <div class="top"><h4>Technical workshops</h4><span class="when">19&ndash;27 SEP</span></div>
           <p>Hands-on workshops organised by the Engineering Design and Innovation Centre. At least two members from each team must attend at least three. Sign-up priority for IDEATE participants.</p>
@@ -536,7 +536,7 @@ section::after{content:"+";position:absolute;top:20px;right:28px;font-family:var
       <details><summary>What is the Preliminary Design Review?</summary><p>A 1&ndash;3 minute video submitted as a YouTube link by 30 Aug, covering your problem, user research, lo-fi prototype and rationale. It's weighted 40% design, 40% engineering, 20% business, and decides which 16 teams advance.</p></details>
 
       <h3 class="faq-cat">Commitment &amp; Workshops</h3>
-      <details><summary>Are the workshops mandatory?</summary><p>Yes. There are several compulsory workshops (the Innovation and Design Workshop on 15 Aug, Innovation Mindset on 19 Aug, and the Business Pitch workshop on 7 Oct) that require attendance. Additionally, during recess week, at least two members from each team must attend at least three technical workshops organised by the Engineering Design and Innovation Centre.</p></details>
+      <details><summary>Are the workshops mandatory?</summary><p>Yes. There are several compulsory workshops (the Innovation and Design Workshop on 15 Aug, Innovation Mindset on 19 Aug, and the Business Pitch workshop on 8 Oct) that require attendance. Additionally, during recess week, at least two members from each team must attend at least three technical workshops organised by the Engineering Design and Innovation Centre.</p></details>
       <details><summary>What resources do we get if we make it to the Semi-Finals?</summary><p>The 16 semi-finalist teams receive incredible perks, including an industrial mentor check-in, consideration for internship opportunities, a recommendation for the NUS Overseas Colleges (NOC) programme, and a S$1,000 prototyping budget if you enrol in specific CDE modules (CDE3301/CDE4301) &mdash; S$800 for non-iDP students.</p></details>
 
       <h3 class="faq-cat">Timeline &amp; Judging</h3>
